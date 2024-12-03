@@ -1,37 +1,62 @@
 <script setup>
+import ArtDisplay from '@/components/ArtDisplay.vue';
+import ArtNav from '@/components/ArtNav.vue';
+import { artsService } from '@/services/ArtsService';
+import { onMounted } from 'vue';
 
+onMounted(() => {
+  artsService.getArts()
+});
 </script>
 
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 card align-items-center shadow rounded elevation-3">
-      <img src="@/assets/img/cw-circle-logo.png" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
-    </div>
-  </div>
+  <header>
+    <h3 class="p-3 mt-2 fw-bold text-center">Boise Fine Arts Institute</h3>
+  </header>
+  <main class="app-layout">
+    <section class="sidebar">
+      <ArtNav />
+    </section>
+    <section class="content">
+      <ArtDisplay />
+    </section>
+  </main>
 </template>
 
 <style scoped lang="scss">
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
+.app-layout {
+  display: flex; 
+  height: 88.9vh; 
+}
 
-  .home-card {
-    width: clamp(500px, 50vw, 100%);
+body{
+  background-color: #6181a1;
+  height: auto;
+}
 
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
+
+.sidebar {
+  width: 25%; 
+  background-color: #6181a1; 
+  color: white;
+  padding: 16px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; 
+  border-top: 3px solid #1c1f21;
+}
+
+header{
+  background-color: #6181a1;
+  color: black;
+  height: 10dvh;
+}
+
+.content {
+  width: 75%; 
+  padding: 16px;
+  background-color: #7d96a6; 
+  overflow-y: auto; 
+  border: 3px solid #1c1f21;
+
 }
 </style>
